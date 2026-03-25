@@ -28,8 +28,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Alignment
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,6 +96,16 @@ fun WeatherDashboardScreen(
         ){
             Text(text = if (weatherState.isLoading)"Loading..." else "\uD83D\uDD04 Refresh Weather")
         }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        OutlinedButton(
+            onClick = { viewModel.toggleErrorSumulation()
+            }
+        ) {
+            Text(text = " ⚠\uFE0F Simulate Error")
+        }
+
         if (weatherState.loadingProgress.isNotEmpty()){
             Spacer(modifier = Modifier.height(8.dp))
             Text(
